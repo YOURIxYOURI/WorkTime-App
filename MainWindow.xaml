@@ -1,0 +1,24 @@
+﻿<Window x:Class="WorkTime_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkTime_App"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock x:Name="clock" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="129"/>
+        <Button Content="Rozpocznij pracę" Click="StartWork_Click" Height="20px" Width="120px" Margin="10,47,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Zakończ pracę" Click="EndWork_Click" Height="20px" Width="120px" Margin="10,72,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Rozpocznij przerwę" Click="StartBreak_Click" Height="20px" Width="120px" Margin="10,97,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Zakończ przerwę" Click="EndBreak_Click" Height="20px" Width="120px" Margin="10,122,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="95,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="35" Height="22" Name="WorkerID"/>
+        <Label Content="ID Pracownika" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top"/>
+        <Button Content="Generuj raport" Click="GenerateReportButton_Click" Height="20px" Width="120px" Margin="10,293,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Data początkowa" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="startDatePicker" Height="25px" Width="120px" Margin="10,206,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Data końcowa" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="endDatePicker" Margin="10,263,0,0" Height="25px" Width="120px" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text="Status: Poza pracą" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" Width="120" x:Name="Status"/>
+    </Grid>
+</Window>
