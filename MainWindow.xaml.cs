@@ -44,6 +44,8 @@ namespace WorkTime_App
         {
             _context.WorkTimes.Add(new WorkTime { EmployeeId = employeeId, StartTime = startTime, EndTime = endTime, BreakDuration = breakDuration });
             _context.SaveChanges();
+
+            var list = _context.WorkTimes.ToList();
         }
         private void GenerateReport(int employeeId, DateTime startDate, DateTime endDate)
         {
@@ -53,7 +55,7 @@ namespace WorkTime_App
             {
                 totalWorkTime += (workTime.EndTime - workTime.StartTime - workTime.BreakDuration);
             }
-            MessageBox.Show($"Czas przepracowany od {startDate.ToShortDateString()} do {endDate.ToShortDateString()}: {totalWorkTime.TotalHours} godzin");
+            MessageBox.Show($"Czas przepracowany od {startDate.ToShortDateString()} do {endDate.ToShortDateString()}: {totalWorkTime.ToString(@"hh\:mm\:ss")}");
         }
 
         private void StartWork_Click(object sender, RoutedEventArgs e)
@@ -64,19 +66,23 @@ namespace WorkTime_App
 
         private void EndWork_Click(object sender, RoutedEventArgs e)
         {
-            if (workStartTime.HasValue)
+            if (workStartTime.HasValue && int.TryParse(WorkerID.Text, out int __))
             {
                 DateTime endTime = DateTime.Now;
                 SaveWorkTime(int.Parse(WorkerID.Text), (DateTime)workStartTime, endTime, (TimeSpan)breakDuration);
                 Status.Text = "Status: Poza pracą";
                 workStartTime = null;
             }
+            else
+            {
+                MessageBox.Show("Uzupełnj pole z ID pracownika");
+            }
         }
 
         private void StartBreak_Click(object sender, RoutedEventArgs e)
         {
             breakStartTime = DateTime.Now;
-            Status.Text = "Status: przerwa";
+            Status.Text = "Status: Przerwa";
         }
 
         private void EndBreak_Click(object sender, RoutedEventArgs e)
@@ -90,9 +96,16 @@ namespace WorkTime_App
         }
         private void GenerateReportButton_Click(object sender, RoutedEventArgs e)
         {
-            DateTime startDate = startDatePicker.DisplayDate;
-            DateTime endDate = endDatePicker.DisplayDate;
-            GenerateReport(int.Parse(WorkerID.Text), startDate, endDate);
+            if (int.TryParse(WorkerID.Text, out int __) && startDatePicker.SelectedDate.Value != null && endDatePicker.SelectedDate.Value != null)
+            {
+                DateTime startDate = startDatePicker.SelectedDate.Value;
+                DateTime endDate = endDatePicker.SelectedDate.Value;
+                GenerateReport(int.Parse(WorkerID.Text), startDate, endDate);
+            }
+            else
+            {
+                MessageBox.Show("Uzupełnij wszytkie 3 pola poprawnie");
+            }
         }
     }
 

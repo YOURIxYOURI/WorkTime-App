@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTime_App"
         mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="15 15 15 15">
         <TextBlock x:Name="clock" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="129"/>
         <Button Content="Rozpocznij pracę" Click="StartWork_Click" Height="20px" Width="120px" Margin="10,47,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button Content="Zakończ pracę" Click="EndWork_Click" Height="20px" Width="120px" Margin="10,72,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
